@@ -1,6 +1,12 @@
 image:
   file: .gitpod.Dockerfile
 
+tasks:
+  - name: Terminal
+    command: |
+      fin config set --env=local VIRTUAL_HOST=$(gp url 8080 | sed -E 's#^https://##g')
+      fin start
+      gp await-port 8080 && gp preview $(gp url 8080)
 
 # VScode xdebug extension
 vscode:
