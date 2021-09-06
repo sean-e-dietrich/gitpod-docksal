@@ -4,6 +4,7 @@ image:
 tasks:
   - name: Terminal
     command: |
+      DOCKSAL_VERSION=feature/gitpod fin update
       chmod +rw ${GITPOD_REPO_ROOT}
       fin config set --env=local VIRTUAL_HOST=$(gp url 8080 | sed -E 's#^https://##g')
       fin start
