@@ -12,7 +12,6 @@ RUN set -ex; \
       cp -R docksal*/stacks/* $HOME/.docksal/stacks/; \
       sudo chmod +x /usr/local/bin/fin; \
       (
-            echo "DOCKSAL_UUID=$(fin debug uuid_generate)"
             echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080"
             echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443"
             echo "DOCKSAL_DNS_DISABLED=1"
