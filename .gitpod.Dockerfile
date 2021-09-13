@@ -11,8 +11,6 @@ RUN set -ex; \
       mkdir -p $HOME/.docksal/{alias,bin,machine,downloads,machine,stacks}; \
       cp -R docksal*/stacks/* $HOME/.docksal/stacks/; \
       sudo chmod +x /usr/local/bin/fin; \
-      (
-            echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080"
-            echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443"
-            echo "DOCKSAL_DNS_DISABLED=1"
-      ) >> $HOME/.docksal/docksal.env
+      echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080" >> $HOME/.docksal/docksal.env; \
+      echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443" >> $HOME/.docksal/docksal.env; \
+      echo "DOCKSAL_DNS_DISABLED=1" >> $HOME/.docksal/docksal.env;
