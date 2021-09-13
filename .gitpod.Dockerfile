@@ -1,10 +1,19 @@
 FROM gitpod/workspace-full
 SHELL ["/bin/bash", "-c"]
 
-RUN sudo apt-get -qq update
-
 # Install Docksal
 RUN set -ex; \
-      sudo curl -fsSL https://raw.githubusercontent.com/docksal/docksal/feature/gitpod/bin/fin -o /usr/local/bin/fin; \
+      sudo apt-get -qq update; \
+      sudo curl -fsSL -o /tmp/docksal.zip https://github.com/docksal/docksal/archive/refs/heads/feature/gitpod.zip; \
+      cd /tmp/; \
+      unzip docksal.zip; \
+      sudo cp docksal*/bin/fin /usr/local/bin/fin; \
+      mkdir -p $HOME/.docksal/{alias,bin,machine,downloads,machine,stacks}; \
+      cp -R docksal*/stacks/* $HOME/.docksal/stacks/; \
       sudo chmod +x /usr/local/bin/fin; \
-      fin config set --global DOCKSAL_VHOST_PROXY_PORT_HTTP=8080 DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443 DOCKSAL_DNS_DISABLED=1; \
+      (
+            echo "DOCKSAL_UUID=$(fin debug uuid_generate)"
+            echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080"
+            echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443"
+            echo "DOCKSAL_DNS_DISABLED=1"
+      ) >> $HOME/.docksal/docksal.env
