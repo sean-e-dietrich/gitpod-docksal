@@ -13,4 +13,7 @@ RUN set -ex; \
       sudo chmod +x /usr/local/bin/fin; \
       echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080" >> $HOME/.docksal/docksal.env; \
       echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443" >> $HOME/.docksal/docksal.env; \
-      echo "DOCKSAL_DNS_DISABLED=1" >> $HOME/.docksal/docksal.env;
+      echo "DOCKSAL_DNS_DISABLED=1" >> $HOME/.docksal/docksal.env; \
+      mkdir -p $HOME/.ssh; \
+      ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa -q -N ""; \
+	chmod 600 $HOME/.ssh/id_rsa
