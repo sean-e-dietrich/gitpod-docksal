@@ -1,12 +1,3 @@
-#image:
-#  file: .gitpod.Dockerfile
-
-#tasks:
-#  - name: Terminal
-#    command: |
-#      chmod +rw ${GITPOD_REPO_ROOT}
-#      fin start
-
 tasks:
   - name: Inital setup
     init: |
