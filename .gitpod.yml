@@ -18,6 +18,7 @@ tasks:
       sudo mkdir -p /usr/local/bin
       sudo curl -fsSL "https://raw.githubusercontent.com/docksal/docksal/feature/gitpod/bin/fin?r=${RANDOM}" -o /usr/local/bin/fin
       sudo chmod +x /usr/local/bin/fin
+      sudo chmod 777 ${GITPOD_REPO_ROOT}
       fin update
     command: |
       echo "init command"
