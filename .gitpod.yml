@@ -8,10 +8,18 @@
 #      fin start
 
 tasks:
-  - name: Test
+  - name: Inital setup
     init: |
-      echo "init run"
-      echo "init run" >> /tmp/test.txt
+      mkdir -p ~/.docksal
+		  touch ~/.docksal/docksal.env
+      echo "DOCKSAL_VHOST_PROXY_PORT_HTTP=8080" >> $HOME/.docksal/docksal.env
+      echo "DOCKSAL_VHOST_PROXY_PORT_HTTPS=8443" >> $HOME/.docksal/docksal.env
+      echo "DOCKSAL_DNS_DISABLED=1" >> $HOME/.docksal/docksal.env
+      sudo mkdir -p /usr/local/bin
+      sudo curl -fsSL "https://raw.githubusercontent.com/docksal/docksal/feature/gitpod/bin/fin?r=${RANDOM}" -o /usr/local/bin/fin
+      sudo chmod +x /usr/local/bin/fin
+      fin update
+	fin update
     command: |
       echo "init command"
       echo "init command" >> /tmp/test.txt
